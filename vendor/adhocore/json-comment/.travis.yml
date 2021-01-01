@@ -1,0 +1,22 @@
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - nightly
+
+matrix:
+  allow_failures:
+    - php: nightly
+
+install:
+  - composer install --prefer-dist
+
+script:
+  - composer test:cov
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
